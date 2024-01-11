@@ -1,45 +1,3 @@
---[[
-
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-
-Kickstart.nvim is *not* a distribution.
-
-Kickstart.nvim is a template for your own configuration.
-  The goal is that you can read every line of code, top-to-bottom, understand
-  what your configuration is doing, and modify it to suit your needs.
-
-  Once you've done that, you should start exploring, configuring and tinkering to
-  explore Neovim!
-
-  If you don't know anything about Lua, I recommend taking some time to read through
-  a guide. One possible example:
-  - https://learnxinyminutes.com/docs/lua/
-
-
-  And then you can explore or search through `:help lua-guide`
-  - https://neovim.io/doc/user/lua-guide.html
-
-
-Kickstart Guide:
-
-I have left several `:help X` comments throughout the init.lua
-You should run that command and read that help section for more information.
-
-In addition, I have some `NOTE:` items throughout the file.
-These are for you, the reader to help understand what is happening. Feel free to delete
-them once you know what you're doing, but they should serve as a guide for when you
-are first encountering a few different constructs in your nvim config.
-
-I hope you enjoy your Neovim journey,
-- TJ
-
-P.S. You can delete this when you're done too. It's your config now :)
---]]
-
--- Set <space> as the leader key
--- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -225,9 +183,6 @@ require('lazy').setup({
     opts = {},
   },
 
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
@@ -296,10 +251,29 @@ require('lazy').setup({
 
   {
     'numToStr/Comment.nvim',
+    opts = {},
     lazy = false,
   },
 
   {
+    'norcalli/nvim-colorizer.lua',
+    lazy = false,
+  },
+
+  'nathom/filetype.nvim',
+
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  },
+
+  {
+    -- File manager
     'TimUntersberger/neofs'
   },
 
@@ -317,6 +291,7 @@ require('lazy').setup({
   },
 
   {
+    -- Highlight the word under the cursor
     'sontungexpt/stcursorword',
     event = 'VeryLazy',
   },
@@ -326,7 +301,6 @@ require('lazy').setup({
   --       Uncomment any of the lines below to enable them.
   -- require 'kickstart.plugins.autoformat',
   -- require 'kickstart.plugins.debug',
-
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
   --    up-to-date with whatever is in the kickstart repo.
@@ -350,9 +324,13 @@ vim.o.undodir = os.getenv('HOME') .. '/.vim/undodir'
 vim.o.colorcolumn = '80'
 vim.o.smartindent = true
 vim.o.cursorline = true
-vim.o.tabstop = 4
-vim.o.shiftwidth = 0
 vim.o.textwidth = 80
+
+-- ─[ Tabs and Spaces ]──────────────────────────────────────────────────
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = true
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -695,7 +673,7 @@ vim.keymap.set('n', '<leader>xl', function() trouble.last() end, { desc = 'Troub
 local harpoon = require('harpoon')
 harpoon:setup()
 
-vim.keymap.set('n', '<leader>da', function() harpoon:list():append() end, { desc = '[D]ocument [A]dd to harpoon' })
+vim.keymap.set('n', '<leader>Ha', function() harpoon:list():append() end, { desc = '[H]arpoon: [A]dd' })
 vim.keymap.set('n', '<C-e>', function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
 
 vim.keymap.set('n', '<C-h>', function() harpoon:list():select(1) end)
@@ -708,6 +686,12 @@ vim.keymap.set('n', '<C-l>', function() harpoon:list():select(4) end)
 --          ╰─────────────────────────────────────────────────────────╯
 
 vim.keymap.set('n', '<C-_>', require('Comment.api').toggle.linewise.current)
+
+--          ╭─────────────────────────────────────────────────────────╮
+--          │                   Configure Colorizer                   │
+--          ╰─────────────────────────────────────────────────────────╯
+
+require('colorizer').setup()
 
 require('stcursorword').setup()
 
@@ -904,6 +888,7 @@ require('which-key').register {
   ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
   ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
   ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
+  ['<leader>H'] = { name = '[H]arpoon', _ = 'which_key_ignore' },
   ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
   ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
   ['<leader>S'] = { name = '[S]ubstitute', _ = 'which_key_ignore' },

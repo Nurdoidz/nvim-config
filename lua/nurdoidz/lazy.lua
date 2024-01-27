@@ -170,9 +170,6 @@ require('lazy').setup({
         lazy = false,
     },
 
-    -- ── Faster version of filetype.vim ──────────────────────────
-    'nathom/filetype.nvim',
-
     -- ── Preview Markdown in the Web Browser ─────────────────────
     {
         "iamcco/markdown-preview.nvim",

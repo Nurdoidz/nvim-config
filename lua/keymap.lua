@@ -2,9 +2,6 @@
 --          │                     Neovim Keymaps                      │
 --          ╘═════════════════════════════════════════════════════════╛
 
--- ── Leader ──────────────────────────────────────────────────
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- ── Remap for dealing with word wrap ────────────────────────

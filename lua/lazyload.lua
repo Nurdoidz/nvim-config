@@ -139,7 +139,15 @@ require('lazy').setup({
     },
 
     -- ── Keymap Popup ────────────────────────────────────────────
-    { 'folke/which-key.nvim', opts = {} },
+    {
+        'folke/which-key.nvim',
+        event = 'VeryLazy',
+        init = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end,
+        opts = {}
+    },
 
     -- ── Color Theme ─────────────────────────────────────────────
     {
@@ -282,5 +290,4 @@ require('lazy').setup({
     -- ── Fancy Notification Manager ──────────────────────────────
     'rcarriga/nvim-notify',
 
-    { import = 'plugins' },
 }, {})

@@ -22,7 +22,7 @@ require('which-key').register {
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work
 require('which-key').register({
-    ['<leader>'] = { 'VISUAL <leader>' },
+    ['<leader>'] = { name = 'VISUAL <leader>' },
     ['<leader>h'] = { 'Git [H]unk' },
     ['<leader>b'] = { 'Comment [B]ox' },
 }, { mode = 'v' })

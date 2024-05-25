@@ -18,6 +18,7 @@ require('which-key').register {
     ['<leader>f'] = { name = '[F]ile Explorer', _ = 'which_key_ignore' },
     ['<leader>T'] = { name = '[T]rouble', _ = 'which_key_ignore' },
     ['<leader>b'] = { name = 'Comment [B]ox', _ = 'which_key_ignore' },
+    ['<leader>m'] = { name = '[M]arkdown', _ = 'which_key_ignore' },
 }
 -- register which-key VISUAL mode
 -- required for visual <leader>hs (hunk stage) to work

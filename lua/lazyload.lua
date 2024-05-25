@@ -290,4 +290,7 @@ require('lazy').setup({
     -- ── Fancy Notification Manager ──────────────────────────────
     'rcarriga/nvim-notify',
 
+    -- ── Toggle Markdown Checkboxes ─────────────────────────
+    'opdavies/toggle-checkbox.nvim',
+
 }, {})

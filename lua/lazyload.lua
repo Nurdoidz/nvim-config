@@ -29,21 +29,22 @@ require('lazy').setup({
     'tpope/vim-sleuth',
 
     -- ── LSP ─────────────────────────────────────────────────────
+    -- Automatically install LSPs to stdpath for neovim
     {
-        'neovim/nvim-lspconfig',
+        'mason-org/mason-lspconfig.nvim',
+        opts = {},
         dependencies = {
-            -- Automatically install LSPs to stdpath for neovim
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
-
-            -- Useful status updates for LSP
-            -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-            { 'j-hui/fidget.nvim', opts = {} },
-
-            -- Additional lua configuration, makes nvim stuff amazing!
-            'folke/neodev.nvim',
-        },
+            { 'mason-org/mason.nvim', opts = {} },
+            'neovim/nvim-lspconfig',
+        }
     },
+
+    -- Useful status updates for LSP
+    -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+    { 'j-hui/fidget.nvim', opts = {} },
+
+    -- Additional lua configuration, makes nvim stuff amazing!
+    'folke/neodev.nvim',
 
     -- ── Autocompletion ──────────────────────────────────────────
     {
@@ -56,9 +57,6 @@ require('lazy').setup({
             -- Adds LSP completion capabilities
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path',
-
-            -- Adds a number of user-friendly snippets
-            'rafamadriz/friendly-snippets',
         },
     },
 

@@ -10,10 +10,10 @@ vim.o.number = true
 vim.o.relativenumber = true
 vim.o.scrolloff = 12
 vim.o.undodir = os.getenv('HOME') .. '/.vim/undo'
-vim.o.colorcolumn = '80'
+vim.o.colorcolumn = '100'
 vim.o.smartindent = true
 vim.o.cursorline = true
-vim.o.textwidth = 80
+vim.o.textwidth = 100
 
 -- ── Tabs and Spaces ──────────────────────────────────────────────────────────
 vim.o.tabstop = 4

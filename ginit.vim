@@ -1,2 +1,2 @@
-set guifont="VictorMono NFM:h12"
-hi Normal guibg=#24283b
+set guifont="VictorMono NFM:h11"
+hi Normal guibg=#17131e

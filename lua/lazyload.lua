@@ -4,7 +4,7 @@
 --          │                     PLugin Manager                      │
 --          ╘═════════════════════════════════════════════════════════╛
 
--- ── Install lazy.nvim ───────────────────────────────────────
+-- ── Install lazy.nvim ─────────────────────────────────────────────────────────
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system {
@@ -157,6 +157,8 @@ require('lazy').setup({
         opts = {},
     },
 
+    'rktjmp/lush.nvim',
+
     -- ── Statusline ──────────────────────────────────────────────
     {
         'nvim-lualine/lualine.nvim',
@@ -170,14 +172,17 @@ require('lazy').setup({
         },
     },
 
+    -- ── Text Alignment ────────────────────────────────────────
+    { 'echasnovski/mini.align', version = false },
+
     -- ── Indention Guides, Even on Blank Lines ───────────────────
-    {
-        'lukas-reineke/indent-blankline.nvim',
-        -- Enable `lukas-reineke/indent-blankline.nvim`
-        -- See `:help ibl`
-        main = 'ibl',
-        opts = {},
-    },
+    -- {
+    --     'lukas-reineke/indent-blankline.nvim',
+    --     -- Enable `lukas-reineke/indent-blankline.nvim`
+    --     -- See `:help ibl`
+    --     main = 'ibl',
+    --     opts = {},
+    -- },
 
     -- ── Fuzzy Finder (files, lsp, etc) ──────────────────────────
     {
@@ -198,12 +203,6 @@ require('lazy').setup({
                 end,
             },
         },
-    },
-
-    -- ── AI ──────────────────────────────────────────────────────
-    {
-        'codota/tabnine-nvim',
-        build = 'pwsh.exe -file .\\dl_binaries.ps1'
     },
 
     -- ── Lua Library ─────────────────────────────────────────────
@@ -292,5 +291,36 @@ require('lazy').setup({
 
     -- ── Toggle Markdown Checkboxes ─────────────────────────
     'opdavies/toggle-checkbox.nvim',
+
+    -- ── Ayame Theme ───────────────────────────────────────────────────────────────
+    {
+        dir = '~/repo/ayame.nvim',
+        name = 'ayame',
+    },
+
+    -- ── Custom Theme ──────────────────────────────────────────────────────────────
+    {
+        "Djancyp/custom-theme.nvim",
+        config = function()
+            require("custom-theme").setup()
+        end,
+    },
+
+    -- ── Automatic Session Manager ─────────────────────────────────────────────────
+    {
+        'rmagatti/auto-session',
+        lazy = false,
+
+        ---enables autocomplete for opts
+        ---@module "auto-session"
+        ---@type AutoSession.Config
+        opts = {
+            suppressed_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+            -- log_level = 'debug',
+        }
+    },
+
+    -- ── Colorizer/Color Picker ────────────────────────────────────────────────────
+    'uga-rosa/ccc.nvim',
 
 }, {})
